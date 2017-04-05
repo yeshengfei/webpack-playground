@@ -1,0 +1,22 @@
+{
+  "name": "webpack-playground",
+  "version": "0.1.0",
+  "description": "to test webpack tech a lot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeshengfei/webpack-playground.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Moon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yeshengfei/webpack-playground/issues"
+  },
+  "homepage": "https://github.com/yeshengfei/webpack-playground#readme"
+}
