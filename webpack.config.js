@@ -21,6 +21,12 @@ module.exports = {
         ])
     ],
     devServer : {
+        watchOptions: {
+        // Delay the rebuild after the first change
+        aggregateTimeout: 300,
+        // Poll using interval (in ms, accepts boolean too)
+            poll: 1000,
+        },
         historyApiFallback: true,
 
         // Display only errors to reduce the amount of output.
