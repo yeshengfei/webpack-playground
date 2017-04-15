@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-module.exports = {
+const baseConfig = {
     entry : {
         app: path.join(__dirname, 'src', 'main.js')
     },
@@ -44,4 +44,13 @@ module.exports = {
         port: 8081,
         open: true
     }
+}
+
+module.exports = (env = "dev") => {
+    if(env == "dev") {
+        baseConfig.devServer.port = 8081
+    }else if(env == "prod"){
+        baseConfig.devServer.port = 8080
+    }
+    return baseConfig;
 }
