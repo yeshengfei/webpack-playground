@@ -22,18 +22,13 @@ const baseConfig = {
             path.join(__dirname, 'node_modules')
         ])
     ],
-    module: {
-        rules: [
-          {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader'],
-          },
-          {
-            test: /\.less$/,
-            use: ['style-loader', 'css-loader', 'less-loader'],
-          },
-        ],
-      }
+    module:
+        merge(
+            {
+                rules: []
+            },
+            require("./webpack/styles")
+        )
 }
 
 var finalConfig = merge(baseConfig,devServer)
