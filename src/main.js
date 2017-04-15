@@ -1,6 +1,5 @@
 import {shake} from './app/shake.js'
 import './background.css'
-import './font.less'
 
 
 shake( )
