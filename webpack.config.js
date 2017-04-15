@@ -21,7 +21,15 @@ const baseConfig = {
         new webpack.WatchIgnorePlugin([
             path.join(__dirname, 'node_modules')
         ])
-    ]
+    ],
+    module: {
+        rules: [
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+          },
+        ],
+      }
 }
 
 var finalConfig = merge(baseConfig,devServer)
