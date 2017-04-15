@@ -1,5 +1,6 @@
 @import "./font.less";
 
 body {
-    background: #ff6600
+    background: #ff6600;
+    display: flex;
 }
