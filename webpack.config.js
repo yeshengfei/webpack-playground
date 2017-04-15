@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const devServer = require('./webpack/devServer.config')
+const devServer = require('./webpack/dev-server')
 const merge = require('webpack-merge')
 
 const baseConfig = {
