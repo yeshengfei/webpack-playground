@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const devServer = require('./webpack/dev-server')
 const merge = require('webpack-merge')
+const stylesExtract = require('./webpack/styles.extract.js')
 
 const baseConfig = {
     entry : {
@@ -26,12 +27,15 @@ const baseConfig = {
         merge(
             {
                 rules: []
-            },
-            require("./webpack/styles")
+            }
+            //require("./webpack/styles")
         )
 }
 
-var finalConfig = merge(baseConfig,devServer)
+var finalConfig = merge(baseConfig, devServer,
+    stylesExtract.extractCSS({ use: ['css-loader', 'less-loader'], regExp: /\.css$/ }),
+    stylesExtract.extractCSS({ use: ['css-loader', 'less-loader'], regExp: /\.less$/ })
+)
 
 module.exports = (env = "dev") => {
     if(env == "dev") {
