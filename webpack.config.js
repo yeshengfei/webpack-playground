@@ -1,31 +1,17 @@
-var webpack = require("webpack");
-var path = require("path")
-
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: {
-        app : ['./src/main.js']
+    entry : {
+        app: path.join(__dirname, 'src', 'main.js')
     },
-    devServer: {
-        inline:true,
-        contentBase: './dist',
-        port:8083,
-        watchOptions: {
-            // Delay the rebuild after the first change
-            aggregateTimeout: 300,
-            // Poll using interval (in ms, accepts boolean too)
-            poll: 1000,
-        },
+    output: {
+        path: path.join(__dirname, 'build'),
+        filename: '[name].js'
     },
     plugins: [
-        // Ignore node_modules so CPU usage with poll
-        // watching drops significantly.
-        new webpack.WatchIgnorePlugin([
-            path.join(__dirname, 'node_modules')
-        ]),
-    ],
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
-    }
+        new HtmlWebpackPlugin({
+            title:'webpack demo'
+        })
+    ]
 }
