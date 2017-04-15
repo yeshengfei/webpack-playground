@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
     entry : {
@@ -12,6 +13,29 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title:'webpack demo'
-        })
-    ]
+        }),
+        // Ignore node_modules so CPU usage with poll
+        // watching drops significantly.
+        new webpack.WatchIgnorePlugin([
+            path.join(__dirname, 'node_modules')
+        ])
+    ],
+    devServer : {
+        historyApiFallback: true,
+
+        // Display only errors to reduce the amount of output.
+        stats: 'errors-only',
+
+        // Parse host and port from env to allow customization.
+        //
+        // If you use Docker, Vagrant or Cloud9, set
+        // host: options.host || '0.0.0.0';
+        //
+        // 0.0.0.0 is available to all network devices
+        // unlike default `localhost`.
+        // host: process.env.HOST, // Defaults to `localhost`
+        // port: process.env.PORT, // Defaults to 8080
+        port: 8081,
+        open: true
+    }
 }
