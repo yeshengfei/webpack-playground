@@ -33,8 +33,7 @@ const baseConfig = {
 }
 
 var finalConfig = merge(baseConfig, devServer,
-    stylesExtract.extractCSS({ use: ['css-loader', 'less-loader'], regExp: /\.css$/ }),
-    stylesExtract.extractCSS({ use: ['css-loader', 'less-loader'], regExp: /\.less$/ })
+    stylesExtract.extractCSS({ use: ['css-loader', 'less-loader'], regExp: /\.(css|less)$/ })    
 )
 
 module.exports = (env = "dev") => {
