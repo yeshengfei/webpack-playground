@@ -4,6 +4,8 @@ const webpack = require('webpack')
 const devServer = require('./webpack/dev-server')
 const merge = require('webpack-merge')
 const stylesExtract = require('./webpack/styles.extract.js')
+const BabiliPlugin = require('babili-webpack-plugin');
+
 
 const baseConfig = {
     devtool: 'source-map',
@@ -13,7 +15,7 @@ const baseConfig = {
     },
     output: {
         path: path.join(__dirname, 'build'),
-        filename: '[name].js'
+        filename: '[name]-[hash].js'
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -27,6 +29,7 @@ const baseConfig = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
         }),
+        new BabiliPlugin( )
     ],
     module:
         merge(
@@ -34,7 +37,12 @@ const baseConfig = {
                 rules: []
             }
             //require("./webpack/styles")
-        )
+        ),
+    performance: {
+        hints: 'warning', // 'error' or false are valid too
+        maxEntrypointSize: 100000, // in bytes
+        maxAssetSize: 450000, // in bytes
+    }
 }
 
 var finalConfig = merge(baseConfig, devServer,
