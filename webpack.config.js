@@ -6,6 +6,7 @@ const merge = require('webpack-merge')
 const stylesExtract = require('./webpack/styles.extract.js')
 
 const baseConfig = {
+    devtool: 'source-map',
     entry : {
         app: path.join(__dirname, 'src', 'main.js')
     },
@@ -33,7 +34,7 @@ const baseConfig = {
 }
 
 var finalConfig = merge(baseConfig, devServer,
-    stylesExtract.extractCSS({ use: ['css-loader', 'less-loader'], regExp: /\.(css|less)$/ })    
+    stylesExtract.extractCSS({ use: ['css-loader', 'less-loader'], regExp: /\.(css|less)$/ })
 )
 
 module.exports = (env = "dev") => {
