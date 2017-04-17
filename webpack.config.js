@@ -6,6 +6,7 @@ const merge = require('webpack-merge')
 const stylesExtract = require('./webpack/styles.extract.js')
 const BabiliPlugin = require('babili-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
 
 
@@ -32,7 +33,11 @@ const baseConfig = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
         }),
-        new BabiliPlugin( )
+        new BabiliPlugin( ),
+        new webpack.BannerPlugin({
+            banner: new GitRevisionPlugin().version(),
+        })
+
     ],
     module:
         merge(
