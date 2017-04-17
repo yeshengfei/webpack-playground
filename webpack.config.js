@@ -8,7 +8,8 @@ const stylesExtract = require('./webpack/styles.extract.js')
 const baseConfig = {
     devtool: 'source-map',
     entry : {
-        app: path.join(__dirname, 'src', 'main.js')
+        app: path.join(__dirname, 'src', 'main.js'),
+        vendor: ['vue']
     },
     output: {
         path: path.join(__dirname, 'build'),
@@ -22,7 +23,10 @@ const baseConfig = {
         // watching drops significantly.
         new webpack.WatchIgnorePlugin([
             path.join(__dirname, 'node_modules')
-        ])
+        ]),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+        }),
     ],
     module:
         merge(
