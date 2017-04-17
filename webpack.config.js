@@ -5,6 +5,8 @@ const devServer = require('./webpack/dev-server')
 const merge = require('webpack-merge')
 const stylesExtract = require('./webpack/styles.extract.js')
 const BabiliPlugin = require('babili-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 
 
 const baseConfig = {
@@ -18,6 +20,7 @@ const baseConfig = {
         filename: '[name]-[hash].js'
     },
     plugins: [
+        new CleanWebpackPlugin([path.join(__dirname, 'build')]),
         new HtmlWebpackPlugin({
             title:'webpack demo'
         }),
